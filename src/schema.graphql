@@ -1,0 +1,83 @@
+# import * from './generated/prisma.graphql'
+
+type SuccessMessage {
+	message: String
+}
+
+type Mutation {
+	createAdvert(
+		name: String
+		state: String
+		city: String
+		adress: String
+		zip: String
+		nip: String
+		regon: String
+		year: String
+		tel: String
+		cell: String
+		fb: String
+		twitter: String
+		insta: String
+		email: String
+		website: String
+		description: String
+		category1: String
+		logo: String
+		image1: String
+		image2: String
+		image3: String
+		image4: String
+		image5: String
+	): Advert!
+	updateAdvert(
+		id: ID
+		name: String
+		state: String
+		city: String
+		adress: String
+		zip: String
+		nip: String
+		regon: String
+		year: String
+		tel: String
+		cell: String
+		fb: String
+		twitter: String
+		insta: String
+		email: String
+		website: String
+		description: String
+		category1: String
+	): Advert!
+	deleteAdvert(id: ID!): Advert
+	signup(email: String!, password: String!, name: String!): User!
+	signin(email: String!, password: String!): User!
+	signout: SuccessMessage
+	requestReset(email: String!): SuccessMessage
+	resetPassword(
+		resetToken: String!
+		password: String!
+		confirmPassword: String!
+	): User!
+	updatePermissions(permissions: [Permission], userId: ID!): User
+}
+type Query {
+	adverts(
+		where: AdvertWhereInput
+		orderBy: AdvertOrderByInput
+		skip: Int
+		first: Int
+	): [Advert]!
+	advert(where: AdvertWhereUniqueInput!): Advert
+	advertsConnection(where: AdvertWhereInput): AdvertConnection!
+	me: User
+	users: [User]!
+}
+
+type User {
+	id: ID!
+	name: String!
+	email: String!
+	permissions: [Permission!]!
+}

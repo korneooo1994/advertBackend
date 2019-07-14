@@ -1,0 +1,46 @@
+enum Permission {
+  ADMIN
+  USER
+  ADVERTCREATE
+  ADVERTUPDATE
+  ADVERTDELETE
+  PERMISSIONUPDATE
+}
+
+type User {
+	id: ID! @id
+	name: String!
+	email: String! @unique
+	password: String!
+  resetToken: String
+  resetTokenExpiry: String
+	permissions: [Permission!]! @scalarList(strategy: RELATION)
+	}
+
+type Advert {
+	id: ID! @id
+	name: String!
+	state: String! 
+	city: String!
+	adress: String!
+	zip: String!
+	nip: String!
+	regon: String!
+	year: String
+	tel: String!
+	cell: String!
+	fb: String
+	twitter: String
+	insta: String
+	email: String!
+	website: String
+	description: String
+	category1: String!
+	logo: String
+	image1: String
+	image2: String
+	image3: String
+	image4: String
+	image5: String
+  user: User!
+}
